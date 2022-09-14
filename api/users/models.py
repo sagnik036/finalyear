@@ -54,7 +54,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
 USER_CHOICES =(
-    ("1", "SHOPKEEPER"),
+    ("1", "USER"),
     ("2", "DELIVERYBOY"),
 )
 

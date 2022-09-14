@@ -27,6 +27,7 @@ class UserView(APIView):
                     "id" : User.id,
                     "email" : User.email,
                     "mobile" : User.mobile,
+                    "account_type" : User.account_type,
                     "access_token": str(access_token.access_token),
                     }
                     return Response(response,status=200)

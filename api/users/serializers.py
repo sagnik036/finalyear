@@ -1,31 +1,30 @@
 from rest_framework import serializers
 from .models import *
 
-class UserRegistrationsSerilaizer(serializers.Serializer):
+class UserRegistrationsSerilaizer(serializers.ModelSerializer):
     """ user registration serialziers fields declarations """
-
-    email = serializers.EmailField(
-        required =True
-    )
-    full_name = serializers.CharField(
-        required = True
-    )
-    mobile = serializers.IntegerField(
-        required = True
-    )
-    password = serializers.CharField(
-        required=True
-    )
-    account_type = serializers.IntegerField(
-        required = True
-    )
+    class Meta:
+        model = CustomUser
+        fields = [
+            'username',
+            'profile_pic',
+            'first_name',
+            'last_name',
+            'email',
+            'mobile',
+            'account_type',
+            'password'
+        ]
 
 class UserAuthenticationSerializer(serializers.Serializer):
     """ authentication fields declarerations """
 
-    email = serializers.EmailField(
+    username = serializers.CharField(
         required =True
     )
     password = serializers.CharField(
-        required=True
+        required = False
+    )
+    grant_type = serializers.CharField(
+        required = True
     )

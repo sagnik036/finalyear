@@ -4,3 +4,4 @@ djangorestframework
 wheel
 djangorestframework-simplejwt
 pillow
+pyotp

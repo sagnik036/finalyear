@@ -4,28 +4,28 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.hashers import (
     check_password, is_password_usable, make_password,
 )
+from django.utils.translation import gettext_lazy as _
 import random
 
 def upload_path(instance ,filename):
-    return '/'.join(['images',str(instance.mobile),filename]) 
+    return '/'.join(['images',str(instance.usernmae),filename]) 
 
 #customusernmanager
 class CustomUserManager(BaseUserManager):
-    def create_user (self,email,password,full_name,mobile, **extrafields):
-        if not email:
-            raise ValueError("Emal Not Provided")
-        if not full_name:
-            raise ValueError("Name Not Given")
-        if not mobile:
-            raise ValueError("mobile not given")
+    def create_user (self,username,password,first_name,last_name, email = None,**extrafields):
+        if not username:
+            raise ValueError("username Not Provided")
+        if not first_name:
+            raise ValueError("first_name Not Given")
         
         user = self.model(
-            email = self.normalize_email(email),
-            full_name = full_name,
-            mobile = mobile,
+            username = username,
+            first_name = first_name,
+            last_name = last_name,
+            password=password,
             **extrafields
         )
-        # user.set_password(password)
+        user.set_password(password)
         user.is_staff = True
         user.is_active = True
         user.is_admin = True
@@ -33,16 +33,17 @@ class CustomUserManager(BaseUserManager):
         
         user.save(using=self._db)
         return user
-    def create_superuser(self,email,password,full_name,mobile, **extrafields):
+
+    def create_superuser(self,username,password,first_name,last_name ,**extrafields):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
         user = self.create_user(
-            email = self.normalize_email(email),
-            full_name = full_name,
+            username = username,
+            first_name = first_name,
+            last_name = last_name,
             password=password,
-            mobile = mobile,
             **extrafields
         )
         user.set_password(password)
@@ -65,12 +66,24 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
         blank = True,
         upload_to = upload_path
     )
-    full_name = models.CharField(
+    username = models.CharField(
+        _('username'),
+        max_length=150,
+        unique=True,
+        help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
+        error_messages={
+            'unique': _("A user with that username already exists."),
+        },
+    )
+    first_name = models.CharField(
+        max_length=15,
+        blank=False
+    )
+    last_name = models.CharField(
         max_length=15,
         blank=False
     )
     email = models.EmailField(
-        db_index=True,
         unique=True,
         blank=False
     )
@@ -95,8 +108,8 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     objects = CustomUserManager()
 
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS =  ['full_name','mobile']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS =  ['first_name','last_name','password','mobile','email']
         
     class Meta:
         verbose_name = 'User'

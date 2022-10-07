@@ -4,5 +4,12 @@ from . import views
 
 """ endpoint for user registrations/authentication """
 urlpatterns =[
-    path('user/', views.UserView.as_view()),
+    path(
+        'login/', 
+        views.UserLoginView.as_view()
+    ),
+    path(
+        'signUp/', 
+        views.UserRegistrationView.as_view()
+    ),
 ]

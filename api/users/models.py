@@ -87,7 +87,8 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
         unique=True,
         blank=False
     )
-    mobile = models.IntegerField(
+    mobile = models.CharField(
+        max_length=12,
         blank= False,
         unique=True
     )

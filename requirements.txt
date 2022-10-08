@@ -5,3 +5,4 @@ wheel
 djangorestframework-simplejwt
 pillow
 pyotp
+psycopg2

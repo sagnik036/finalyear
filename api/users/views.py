@@ -118,7 +118,14 @@ class UserRegistrationView(GenericAPIView):
                     "mobile": User.mobile,
                     "access_token" : str(access_token.access_token),
                 }
+                otp_username.isVerified = False
+                otp_username.save()
                 return Response(response,status=status.HTTP_200_OK)
+            else:
+                response = {
+                    "message" : "otp expired/not verified"
+                }
+                return Response(response,status=404)
 
         except:
             response = {

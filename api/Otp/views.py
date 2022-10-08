@@ -8,6 +8,7 @@ from rest_framework.generics import GenericAPIView
 from .models import *
 import base64
 from api.models import *
+from twilio.rest import Client 
 
 
 # This class returns the string needed to generate the key
@@ -21,8 +22,8 @@ class getUsernameNumberRegistered(APIView):
     @staticmethod
     def get(request,username):
         try:
-            Mobile = OtpModel.objects.get(username=username)
-            print(Mobile) # if Mobile already exists the take this else create New One
+            usernames = OtpModel.objects.get(username=username)
+            print(usernames) # if Mobile already exists the take this else create New One
         except ObjectDoesNotExist:
             OtpModel.objects.create(
                 username=username,
@@ -36,7 +37,17 @@ class getUsernameNumberRegistered(APIView):
         OTP = pyotp.HOTP(key)  # HOTP Model for OTP is created
         print(OTP.at(usernames.counter))
         # Using Multi-Threading send the OTP Using Messaging Services like Twilio or Fast2sms
-        return Response({"OTP": OTP.at(usernames.counter)}, status=200)  # Just for demonstration
+        """ twilio authentication """
+        account_sid = 'AC92c620fb4b89f8ff9db08290a0f065bf' 
+        auth_token = '3a0678cd6069a98965bac479737517bb'
+        client = Client(account_sid, auth_token) 
+        message = client.messages.create(  
+            messaging_service_sid='MGf1c700c6d0ea962a7721c024aafed32d', 
+            body=OTP.at(usernames.counter),  
+            to='+91'+username
+        ) 
+        print(message.sid)
+        return Response({"message": f"otp sent to {usernames}"}, status=200)  # Just for demonstration
 
     # This Method verifies the OTP
     @staticmethod

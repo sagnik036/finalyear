@@ -8,7 +8,8 @@ from rest_framework.generics import GenericAPIView
 from .models import *
 import base64
 from api.models import *
-from twilio.rest import Client 
+from twilio.rest import Client
+from myproject import settings 
 
 
 # This class returns the string needed to generate the key
@@ -36,13 +37,14 @@ class getUsernameNumberRegistered(APIView):
         key = base64.b32encode(keygen.returnValue(usernames).encode())  # Key is generated
         OTP = pyotp.HOTP(key)  # HOTP Model for OTP is created
         print(OTP.at(usernames.counter))
-        # Using Multi-Threading send the OTP Using Messaging Services like Twilio or Fast2sms
+        
         """ twilio authentication """
-        account_sid = 'AC92c620fb4b89f8ff9db08290a0f065bf' 
-        auth_token = '3a0678cd6069a98965bac479737517bb'
+
+        account_sid = settings.account_sid 
+        auth_token = settings.auth_token
         client = Client(account_sid, auth_token) 
         message = client.messages.create(  
-            messaging_service_sid='MGf1c700c6d0ea962a7721c024aafed32d', 
+            messaging_service_sid=settings.msg_id,
             body=OTP.at(usernames.counter),  
             to='+91'+username
         ) 

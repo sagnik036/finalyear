@@ -36,7 +36,6 @@ class getUsernameNumberRegistered(APIView):
         keygen = generateKey()
         key = base64.b32encode(keygen.returnValue(usernames).encode())  # Key is generated
         OTP = pyotp.HOTP(key)  # HOTP Model for OTP is created
-        print(OTP.at(usernames.counter))
         
         """ twilio authentication """
 
@@ -48,7 +47,7 @@ class getUsernameNumberRegistered(APIView):
             body=OTP.at(usernames.counter),  
             to='+91'+username
         ) 
-        print(message.sid)
+        print(message.status)
         return Response({"message": f"otp sent to {usernames}"}, status=200)  # Just for demonstration
 
     # This Method verifies the OTP

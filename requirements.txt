@@ -7,3 +7,6 @@ pillow
 pyotp
 psycopg2
 twilio
+django-decouple
+gunicorn==20.0.4
+django-environ

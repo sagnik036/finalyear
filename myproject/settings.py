@@ -1,16 +1,18 @@
 from pathlib import Path
 import os
 from datetime import timedelta
-from decouple import config
+import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -148,7 +150,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 """ twilio credentials for sms"""
-account_sid = config('twilio_account_sid')
-auth_token = config('twilio_auth_token')
-msg_id = config('twilio_msid')
+account_sid = env('TWILIO_ACCOUNT_SID')
+auth_token = env('TWILIO_AUTH_TOKEN')
+msg_id = env('TWILIO_MSID')
 

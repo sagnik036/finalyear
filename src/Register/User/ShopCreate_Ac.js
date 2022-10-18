@@ -4,7 +4,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
+  StatusBar,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -52,6 +52,7 @@ export default function ShopCreate_Ac({ navigation }) {
       >
         <Text style={styles.nextStyle}>Next</Text>
       </TouchableOpacity>
+      <StatusBar style="auto" />
     </View>
   );
 }

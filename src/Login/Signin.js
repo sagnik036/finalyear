@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  StatusBar,
+} from "react-native";
 import React from "react";
 
 export default function Signin({ navigation }) {
@@ -21,6 +27,7 @@ export default function Signin({ navigation }) {
       >
         <Text style={styles.underlineTextStyle}>Create account</Text>
       </TouchableOpacity>
+      <StatusBar style="auto" />
     </View>
   );
 }

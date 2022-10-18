@@ -4,6 +4,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -40,6 +41,7 @@ export default function ShopCreate_Ac2() {
       <TouchableOpacity style={styles.nextBtn}>
         <Text style={styles.nextStyle}>Create account</Text>
       </TouchableOpacity>
+      <StatusBar style="auto" />
     </View>
   );
 }

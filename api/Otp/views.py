@@ -39,16 +39,18 @@ class getUsernameNumberRegistered(APIView):
         
         """ twilio authentication """
 
-        account_sid = settings.account_sid 
-        auth_token = settings.auth_token
-        client = Client(account_sid, auth_token) 
-        message = client.messages.create(  
-            messaging_service_sid=settings.msg_id,
-            body=OTP.at(usernames.counter),  
-            to='+91'+username
-        ) 
-        print(message.status)
-        return Response({"message": f"otp sent to {usernames}"}, status=200)  # Just for demonstration
+        # account_sid = settings.account_sid 
+        # auth_token = settings.auth_token
+        # client = Client(account_sid, auth_token) 
+        # message = client.messages.create(  
+        #     messaging_service_sid=settings.msg_id,
+        #     body=OTP.at(usernames.counter),  
+        #     to='+91'+username
+        # ) 
+        # print(message.status)
+        # return Response({"message": f"otp sent to {usernames}"}, status=200)  # Just for demonstration
+
+        return Response({"otp":OTP.at(usernames.counter)}, status=201)
 
     # This Method verifies the OTP
     @staticmethod

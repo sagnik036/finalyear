@@ -28,3 +28,11 @@ class UserAuthenticationSerializer(serializers.Serializer):
     grant_type = serializers.CharField(
         required = True
     )
+
+    @classmethod
+    def validate(cls, data):
+        errors = {}
+
+        if errors:
+            raise serializers.ValidationError(data)
+        return super(UserAuthenticationSerializer, cls).validate(cls, data)

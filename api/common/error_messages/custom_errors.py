@@ -6,22 +6,18 @@ from rest_framework import status
 
 def UserNotFound():
     response = {
-        "errors": [
-            {
-                "user_not_found": "user not found"
-            }
-        ]
+        "errors": "invalid username"
     }
     return (response)
 
 def invalidCredentials():
     response = {
-        "errors": [{"invalid_password":"check your password"}]
+        "errors": "invalid_credentials"
     }
     return (response)
 
 def invalidOtp():
     response = {
-        "errors": [{"invalid_otp":"invalid_otp"}]
+        "errors": "invalid otp / otp expired"
     }
     return (response)

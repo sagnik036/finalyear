@@ -48,18 +48,12 @@ class UserServices(View):
                         return Response(result, status=status.HTTP_401_UNAUTHORIZED)
                 except:
                     result = {
-                        "errors": [
-                            {
-                                "otp_error": "otp not initialize"
-                            }
-                        ]
+                        "errors": "otp not initialize"
                     }
                     return Response(result, status=status.HTTP_400_BAD_REQUEST)
             else:
                 result = {
-                    "errors": [
-                        {"grant_type_error": "invalid_grant_type"}
-                    ]
+                    "errors": "invalid grant_type"
                 }
                 return Response(result, status=status.HTTP_400_BAD_REQUEST)
 

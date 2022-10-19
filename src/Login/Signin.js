@@ -84,16 +84,16 @@ const styles = StyleSheet.create({
 
   text3: {
     fontSize: 12,
-    position: "relative",
-    bottom: "4%",
-    right: "10%",
+    position: "absolute",
+    bottom: 335,
+    left: 100,
   },
 
   underlineTextStyle: {
     fontSize: 12,
     color: "#EE4E4E",
     textDecorationLine: "underline",
-    left: "16%",
-    bottom: "290%",
+    bottom: 18,
+    right: -70,
   },
 });

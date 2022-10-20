@@ -6,6 +6,7 @@ import ShopCreate_Ac from "./src/Register/User/ShopCreate_Ac";
 import ShopCreate_Ac2 from "./src/Register/User/ShopCreate_Ac2";
 import Signin from "./src/Login/Signin";
 import Prelog from "./src/Prelog";
+import Login from "./src/Login/Login";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -31,6 +32,11 @@ export default function App() {
         <Stack.Screen
           name="2"
           component={ShopCreate_Ac2}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="login"
+          component={Login}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

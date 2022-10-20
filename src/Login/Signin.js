@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
+  TouchableHighlight,
 } from "react-native";
 import React from "react";
 
@@ -11,10 +12,16 @@ export default function Signin({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.text1}>Log in</Text>
-      <TouchableOpacity style={styles.nextBtn1}>
+
+      <TouchableOpacity
+        style={styles.nextBtn1}
+        onPress={() => navigation.navigate("login")}
+      >
         <Text style={styles.nextStyle}>Email</Text>
       </TouchableOpacity>
+
       <Text style={styles.text2}>Or</Text>
+
       <TouchableOpacity style={styles.nextBtn2}>
         <Text style={styles.nextStyle}>Phone number</Text>
       </TouchableOpacity>

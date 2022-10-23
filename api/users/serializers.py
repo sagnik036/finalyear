@@ -10,8 +10,6 @@ class UserRegistrationsSerilaizer(serializers.ModelSerializer):
             'profile_pic',
             'first_name',
             'last_name',
-            'email',
-            'mobile',
             'account_type',
             'password'
         ]

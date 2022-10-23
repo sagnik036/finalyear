@@ -85,12 +85,15 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     )
     email = models.EmailField(
         unique=True,
+        null=True,
         blank=False
     )
     mobile = models.CharField(
         max_length=12,
-        blank= False,
-        unique=True
+        unique=True,
+        null=True,
+        blank=False
+
     )
     account_type = models.CharField(
         max_length=50,

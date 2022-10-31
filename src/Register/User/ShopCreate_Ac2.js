@@ -5,8 +5,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   StatusBar,
+  Dimensions,
 } from "react-native";
 import React, { useState } from "react";
+const { height, width } = Dimensions.get("window");
 
 export default function ShopCreate_Ac2() {
   const [ShopName, SetShopNAme] = useState("");
@@ -53,14 +55,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text1: {
-    top: 150,
+    top: width / 3,
     fontFamily: "Roboto",
     fontSize: 30,
     color: "red",
   },
 
   text2: {
-    top: 190,
+    top: width / 2.4,
     fontFamily: "serif",
     fontSize: 18.5,
     color: "grey",
@@ -75,7 +77,8 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 12,
     backgroundColor: "#D3D3D3",
-    top: 210,
+    top: width / 1.9,
+    fontSize: 15,
   },
 
   nextBtn: {
@@ -86,12 +89,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: 310,
     height: 50,
-    top: 230,
+    top: width / 1.8,
   },
 
   nextStyle: {
     color: "white",
     fontSize: 21,
     fontFamily: "Roboto",
+    textAlign: "center",
   },
 });

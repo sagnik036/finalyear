@@ -6,8 +6,10 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   StatusBar,
+  Dimensions,
 } from "react-native";
 import React from "react";
+const { height, width } = Dimensions.get("window");
 
 export default function Prelog({ navigation }) {
   return (
@@ -28,13 +30,16 @@ export default function Prelog({ navigation }) {
         <Text style={styles.delivertext}>
           Make your products delivered from anytime anywhere
         </Text>
-        <View style={styles.view2}>
-          <Text style={styles.account}>Already have an acount?</Text>
 
-          <TouchableOpacity onPress={() => navigation.navigate("signin")}>
-            <Text style={styles.login}>Login</Text>
-          </TouchableOpacity>
-        </View>
+        <Text style={styles.account}>
+          Already have an account?{" "}
+          <Text
+            style={styles.login}
+            onPress={() => navigation.navigate("signin")}
+          >
+            Login
+          </Text>
+        </Text>
 
         <TouchableOpacity
           style={styles.CreateAccount}
@@ -56,13 +61,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    height: 250,
-    width: 400,
-    marginBottom: 300,
+    height: height / 2,
+    width: width,
+    bottom: width / 4,
+    //marginBottom: 300,
   },
   Job: {
-    position: "absolute",
-    top: 450,
+    //position: "absolute",
+    bottom: width / 3.5,
     fontWeight: "bold",
     fontSize: 31,
     fontFamily: "notoserif",
@@ -70,16 +76,19 @@ const styles = StyleSheet.create({
     letterSpacing: -0.085,
     lineHeight: 58,
     fontStyle: "normal",
+    width: width,
+    left: 4,
   },
   delivertext: {
-    position: "absolute",
-    left: 22,
-    top: 526,
+    width: width / 1,
+    //position: "absolute",
+    //left: 2,
+    top: -80,
     fontFamily: "sans-serif-light",
     //fontStyle: "normal",
     fontWeight: "400",
     fontSize: 18,
-    alignItems: "center",
+    //alignItems: "center",
     textAlign: "center",
     letterSpacing: -0.085,
   },
@@ -88,19 +97,22 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif-light",
     fontSize: 16,
     top: -40,
-    right: 40,
+    right: 10,
+    textAlign: "center",
+    width: width / 1.6,
   },
   login: {
+    position: "absolute",
     color: "red",
     textDecorationLine: "underline",
-    top: -60,
-    left: 135,
   },
   view2: {
     top: 10,
     justifyContent: "center",
     alignContent: "center",
     right: -18,
+    width: width / 2,
+    textAlign: "center",
   },
   CreateAccount: {
     borderRadius: 12,
@@ -108,12 +120,13 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 8,
     alignItems: "center",
-    width: 310,
-    height: 50,
+    width: width / 1.4,
+    height: height / 15,
   },
   textStyle: {
     color: "white",
     fontSize: 21,
     fontFamily: "Roboto",
+    textAlign: "center",
   },
 });

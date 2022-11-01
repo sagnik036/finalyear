@@ -58,7 +58,6 @@ USER_CHOICES =(
     ("1", "USER"),
     ("2", "DELIVERYBOY"),
 )
-
 class CustomUser(AbstractBaseUser,PermissionsMixin):
     profile_pic = models.ImageField(
         default="",

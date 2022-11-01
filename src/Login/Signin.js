@@ -24,7 +24,8 @@ export default function Signin({ navigation }) {
 
       <Text style={styles.text2}>Or</Text>
 
-      <TouchableOpacity style={styles.nextBtn2}>
+      <TouchableOpacity style={styles.nextBtn2} 
+      onPress={() => navigation.navigate("phonelogin")}>
         <Text style={styles.nextStyle}>Phone number</Text>
       </TouchableOpacity>
 

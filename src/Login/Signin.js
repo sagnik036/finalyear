@@ -15,17 +15,17 @@ export default function Signin({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.text1}>Log in</Text>
 
-      <TouchableOpacity
-        style={styles.nextBtn1}
-        onPress={() => navigation.navigate("login")}
-      >
-        <Text style={styles.nextStyle}>Username</Text>
+      <TouchableOpacity style={styles.nextBtn1}>
+        <Text style={styles.nextStyle}>Phone number</Text>
       </TouchableOpacity>
 
       <Text style={styles.text2}>Or</Text>
 
-      <TouchableOpacity style={styles.nextBtn2}>
-        <Text style={styles.nextStyle}>Phone number</Text>
+      <TouchableOpacity
+        style={styles.nextBtn2}
+        onPress={() => navigation.navigate("login")}
+      >
+        <Text style={styles.nextStyle}>Username</Text>
       </TouchableOpacity>
 
       <Text style={styles.text3}>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
 
   text3: {
-    fontSize: 12,
+    fontSize: 14,
     //position: "absolute",
     textAlign: "center",
     bottom: width / 15,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
 
   underlineTextStyle: {
-    fontSize: 12,
+    fontSize: 14,
     color: "red",
     textDecorationLine: "underline",
   },

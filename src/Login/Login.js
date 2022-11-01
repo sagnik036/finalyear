@@ -4,14 +4,17 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
-import React, { useState } from "react";
-
+import React, { useContext, useState } from "react";
+import { Authcontext } from "../../api/Authcontext";
+import Spinner from "react-native-loading-spinner-overlay";
+const { height, width } = Dimensions.get("window");
 
 export default function Login({ navigation }) {
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
-
+  const { isLoading, login } = useContext(Authcontext);
   // useEffect(() =>{
   // google.accounts.id.initialize({
   //   client_id:" ";
@@ -20,6 +23,7 @@ export default function Login({ navigation }) {
   // }, []);
   return (
     <View style={styles.container}>
+      <Spinner color="red" visible={isLoading} />
       <Text style={styles.text2}>Please enter your Email</Text>
 
       <TextInput
@@ -27,9 +31,10 @@ export default function Login({ navigation }) {
         style={styles.input}
         keyboardType="default"
         placeholder="Email"
+        value={username}
         onChangeText={(value) => setUsername(value)}
       />
-      
+
       <TextInput
         //Add styles,secureTextEntry,keyboard type(optional) for Password
         style={styles.input}
@@ -37,25 +42,35 @@ export default function Login({ navigation }) {
         secureTextEntry={true}
         keyboardType="numeric"
         placeholder="Password"
+        value={pass}
         onChangeText={(value) => setPass(value)}
       />
-      
-      <TouchableOpacity style={styles.nextBtn1}>
-        <Text style={styles.nextStyle}>login</Text>
-        
-      </TouchableOpacity>
-      
-      <Text style={styles.text3}>Don't have an account?{" "}
-      <Text style={styles.underlineTextStyle1}>Create Account</Text>
+
+      {username == "" || pass == "" ? (
+        <TouchableOpacity style={styles.nextBtndisable} disabled={true}>
+          <Text style={styles.nextStyle}>Login</Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          style={styles.nextBtn1}
+          onPress={() => login(username, pass)}
+        >
+          <Text style={styles.nextStyle}>Login</Text>
+        </TouchableOpacity>
+      )}
+
+      <Text style={styles.text3}>
+        Don't have an account?{" "}
+        <Text style={styles.underlineTextStyle1}>Create Account</Text>
       </Text>
 
-      <Text style={styles.text4}>By login you agree with our{" "}
-      <Text style={styles.underlineTextStyle1}>Terms and Conditions</Text>{" "}
-      <Text >and</Text>{" "}
-      <Text style={styles.underlineTextStyle1}>Privacy policy</Text>
+      <Text style={styles.text4}>
+        By login you agree with our{" "}
+        <Text style={styles.underlineTextStyle1}>Terms and Conditions</Text>{" "}
+        <Text>and</Text>{" "}
+        <Text style={styles.underlineTextStyle1}>Privacy policy</Text>
       </Text>
     </View>
-    
   );
 }
 
@@ -75,49 +90,54 @@ const styles = StyleSheet.create({
     width: 280,
     height: 50,
     margin: 10,
-    
   },
   nextBtn1: {
     borderRadius: 20,
     backgroundColor: "red",
     padding: 10,
-    margin: 20,
+    margin: 8,
     alignItems: "center",
-    width: 280,
-    height: 50,
+    width: width / 1.4,
+    height: 60,
     bottom: -30,
   },
   text3: {
-    fontSize: 12,
+    fontSize: 13,
     // position: "absolute",
-    top:50,
-    left: 10,
-    textAlign:"center",
-    
+    top: width / 6,
+    textAlign: "center",
   },
   underlineTextStyle1: {
-    flexDirection: "column",
     color: "#EE4E4E",
     textDecorationLine: "underline",
-    
-  },
-  
-  nextStyle:{
-    color: "white",
-    fontSize: 30
   },
 
-  text2:{
-    color:"red",
+  nextStyle: {
+    color: "white",
+    fontSize: 24,
+    textAlign: "center",
+  },
+
+  text2: {
+    color: "red",
     fontSize: 30,
-    top: -50,
+    bottom: width / 4.5,
   },
   text4: {
+    fontSize: 13,
+    //alignItems: "center",
+    top: width / 1.6,
     flexDirection: "column",
-    fontSize: 12,
-    alignItems:"center",
-    bottom: -150
-    
+    width: width / 1.2,
   },
- 
+  nextBtndisable: {
+    borderRadius: 20,
+    backgroundColor: "black",
+    padding: 10,
+    margin: 8,
+    alignItems: "center",
+    width: width / 1.4,
+    height: 60,
+    bottom: -30,
+  },
 });

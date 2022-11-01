@@ -20,13 +20,13 @@ export default function Login({ navigation }) {
   // }, []);
   return (
     <View style={styles.container}>
-      <Text style={styles.text2}>Please enter your Username</Text>
+      <Text style={styles.text2}>Please enter your Email</Text>
 
       <TextInput
         //Add styles,defualt value,keyboard type for Username
         style={styles.input}
         keyboardType="default"
-        placeholder="Username"
+        placeholder="Email"
         onChangeText={(value) => setUsername(value)}
       />
       

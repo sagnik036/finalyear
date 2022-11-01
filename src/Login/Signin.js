@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
   nextBtn1: {
     borderRadius: 12,
-    backgroundColor: "#EE4E4E",
+    backgroundColor: "red",
     padding: 10,
     margin: 8,
     alignItems: "center",

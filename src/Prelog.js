@@ -31,9 +31,12 @@ export default function Prelog({ navigation }) {
         <View style={styles.view2}>
           <Text style={styles.account}>Already have an acount?</Text>
 
-          <TouchableOpacity onPress={() => navigation.navigate("signin")}>
-            <Text style={styles.login}>Login</Text>
-          </TouchableOpacity>
+          {/* <TouchableOpacity onPress={() => navigation.navigate("signin")}> */}
+            <Text style={styles.login}
+            onPress={()=> navigation.navigate("signin")}
+            >Login</Text>
+            
+          {/* </TouchableOpacity> */}
         </View>
 
         <TouchableOpacity

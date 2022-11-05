@@ -130,13 +130,13 @@ const styles = StyleSheet.create({
   text4: {
     fontSize: 13,
     //alignItems: "center",
-    top: width / 1.6,
+    top: width / 2.1,
     flexDirection: "column",
     width: width / 1.2,
   },
   nextBtndisable: {
     borderRadius: 20,
-    backgroundColor: "black",
+    backgroundColor: "#EE4E4E",
     padding: 10,
     margin: 8,
     alignItems: "center",

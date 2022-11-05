@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Button } from "react-native-paper";
 
 
 export default function Login({ navigation }) {
@@ -30,6 +32,7 @@ export default function Login({ navigation }) {
         onChangeText={(value) => setUsername(value)}
       />
       
+
       <TextInput
         //Add styles,secureTextEntry,keyboard type(optional) for Password
         style={styles.input}
@@ -45,14 +48,21 @@ export default function Login({ navigation }) {
         
       </TouchableOpacity>
       
+      
       <Text style={styles.text3}>Don't have an account?{" "}
-      <Text style={styles.underlineTextStyle1}>Create Account</Text>
+      <Text 
+      onPress={() => navigation.navigate("1")}
+      style={styles.underlineTextStyle1}>Create Account</Text>
       </Text>
 
       <Text style={styles.text4}>By login you agree with our{" "}
-      <Text style={styles.underlineTextStyle1}>Terms and Conditions</Text>{" "}
+      <Text 
+      onPress={() => navigation.navigate("1")}
+      style={styles.underlineTextStyle1}>Terms and Conditions</Text>{" "}
       <Text >and</Text>{" "}
-      <Text style={styles.underlineTextStyle1}>Privacy policy</Text>
+      <Text 
+      onPress={() => navigation.navigate("1")}
+      style={styles.underlineTextStyle1}>Privacy policy</Text>
       </Text>
     </View>
     

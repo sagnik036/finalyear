@@ -66,9 +66,13 @@ export default function Login({ navigation }) {
 
       <Text style={styles.text4}>
         By login you agree with our{" "}
-        <Text style={styles.underlineTextStyle1}>Terms and Conditions</Text>{" "}
+        <Text 
+      onPress={() => navigation.navigate("1")}
+      style={styles.underlineTextStyle1}>Terms and Conditions</Text>{" "}
         <Text>and</Text>{" "}
-        <Text style={styles.underlineTextStyle1}>Privacy policy</Text>
+        <Text 
+      onPress={() => navigation.navigate("1")}
+      style={styles.underlineTextStyle1}>Privacy policy</Text>
       </Text>
     </View>
   );
@@ -126,13 +130,13 @@ const styles = StyleSheet.create({
   text4: {
     fontSize: 13,
     //alignItems: "center",
-    top: width / 1.6,
+    top: width / 2.1,
     flexDirection: "column",
     width: width / 1.2,
   },
   nextBtndisable: {
     borderRadius: 20,
-    backgroundColor: "black",
+    backgroundColor: "#EE4E4E",
     padding: 10,
     margin: 8,
     alignItems: "center",

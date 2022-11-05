@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   nextBtn1: {
     borderRadius: 20,
-    backgroundColor: "red",
+    backgroundColor: "#EE4E4E",
     padding: 10,
     margin: 8,
     alignItems: "center",

@@ -72,7 +72,7 @@ class UserServices(View):
         mobile = data.get('mobile')
         account_type = data.get('account_type')
         password = data.get('password')
-        profile_pic = data.get('profile_pic')
+        # profile_pic = data.get('profile_pic') 'to be added later : m2'
         try:
             otp_instance = OtpModel.objects.get(username = username)
             print(otp_instance)
@@ -81,9 +81,10 @@ class UserServices(View):
                     username=username,
                     first_name=first_name,
                     last_name=last_name,
+                    email = email,
+                    mobile = mobile,
                     password=make_password(password),
-                    account_type=account_type,
-                    profile_pic=profile_pic
+                    account_type=account_type
                 )
                 if (User.username[-4] == '.'):
                     User.email = username.lower()
@@ -94,6 +95,7 @@ class UserServices(View):
                 response={
                     "message" :"user created",
                     "id" : User.id,
+                    "username" : User.username,
                     "token" : str(access_token.access_token)
                 }
                 otp_instance.isVerified = False

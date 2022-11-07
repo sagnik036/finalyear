@@ -7,7 +7,6 @@ class UserRegistrationsSerilaizer(serializers.ModelSerializer):
         model = CustomUser
         fields = [
             'username',
-            'profile_pic',
             'first_name',
             'last_name',
             'account_type',

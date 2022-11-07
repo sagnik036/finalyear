@@ -66,13 +66,19 @@ export default function Login({ navigation }) {
 
       <Text style={styles.text4}>
         By login you agree with our{" "}
-        <Text 
-      onPress={() => navigation.navigate("1")}
-      style={styles.underlineTextStyle1}>Terms and Conditions</Text>{" "}
+        <Text
+          onPress={() => navigation.navigate("1")}
+          style={styles.underlineTextStyle1}
+        >
+          Terms and Conditions
+        </Text>{" "}
         <Text>and</Text>{" "}
-        <Text 
-      onPress={() => navigation.navigate("1")}
-      style={styles.underlineTextStyle1}>Privacy policy</Text>
+        <Text
+          onPress={() => navigation.navigate("1")}
+          style={styles.underlineTextStyle1}
+        >
+          Privacy policy
+        </Text>
       </Text>
     </View>
   );
@@ -97,7 +103,7 @@ const styles = StyleSheet.create({
   },
   nextBtn1: {
     borderRadius: 20,
-    backgroundColor: "#EE4E4E",
+    backgroundColor: "red",
     padding: 10,
     margin: 8,
     alignItems: "center",

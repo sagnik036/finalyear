@@ -7,37 +7,48 @@ import {
   StatusBar,
   Dimensions,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { SelectList } from "react-native-dropdown-select-list";
+import { ScrollView } from "react-native-web";
+import { Authcontext } from "../../../api/Authcontext";
 const { height, width } = Dimensions.get("window");
 
 export default function ShopCreate_Ac({ navigation }) {
   const [Name, SetName] = useState("");
-  const [Email, setEmail] = useState("");
+  const [FName, setFName] = useState("");
+  const [LName, setLName] = useState("");
   const [Pass, SetPass] = useState("");
-  const [Phone, SetPhone] = useState("");
   const [error, Seterror] = useState("");
+  const [selected, setSelected] = React.useState("");
 
-  validation = () => {
-    if (Name === "" && Email === "" && Pass === "" && Phone === "") {
-      Seterror("All fields are empty");
-    } else if (Name === "") {
-      Seterror("Name should not be empty");
-    } else if (Name.length < 3) {
-      Seterror("Invalid Name");
-    } else if (Email === "") {
-      Seterror("Empty Mail");
-    } else if (Pass.length === 0) {
-      Seterror("Password is empty");
-    } else if (Pass.length < 6) {
-      Seterror("Password should have more than 6 characters");
-    } else if (Pass.indexOf(" ") >= 0) {
-      Seterror("Password should not have whitespace");
-    } else if (Phone.length != 10) {
-      Seterror("Invalid Phone number");
-    } else {
-      navigation.navigate("2");
-    }
-  };
+  const { isLoading, register } = useContext(Authcontext);
+
+  const data = [
+    { key: "1", value: "USER" },
+    { key: "2", value: "DELIVERY BOY" },
+  ];
+
+  // validation = () => {
+  //   if (Name === "" && Email === "" && Pass === "" && Phone === "") {
+  //     Seterror("All fields are empty");
+  //   } else if (Name === "") {
+  //     Seterror("Name should not be empty");
+  //   } else if (Name.length < 3) {
+  //     Seterror("Invalid Name");
+  //   } else if (FName === "") {
+  //     Seterror("Empty Mail");
+  //   } else if (Pass.length === 0) {
+  //     Seterror("Password is empty");
+  //   } else if (Pass.length < 6) {
+  //     Seterror("Password should have more than 6 characters");
+  //   } else if (Pass.indexOf(" ") >= 0) {
+  //     Seterror("Password should not have whitespace");
+  //   } else if (Phone.length != 10) {
+  //     Seterror("Invalid Phone number");
+  //   } else {
+  //     navigation.navigate("2");
+  //   }
+  // };
 
   return (
     <View style={styles.container}>
@@ -47,35 +58,58 @@ export default function ShopCreate_Ac({ navigation }) {
       </Text>
 
       <Text style={styles.Error}>{error}</Text>
+
       <TextInput
         style={styles.textinput}
-        placeholder="Full Name"
+        placeholder="User Name"
+        value={Name}
         keyboardType="default"
         onChangeText={(value) => SetName(value)}
       />
 
       <TextInput
         style={styles.textinput}
-        placeholder="Email"
-        keyboardType="email-address"
-        onChangeText={(value) => setEmail(value)}
+        placeholder="First Name"
+        value={FName}
+        keyboardType="default"
+        onChangeText={(value) => setFName(value)}
       />
+
+      <TextInput
+        style={styles.textinput}
+        placeholder="Last Name"
+        value={LName}
+        keyboardType="default"
+        onChangeText={(value) => setLName(value)}
+      />
+
+      <View style={styles.dropdown}>
+        <SelectList
+          maxHeight={90}
+          search={false}
+          placeholder="Account type"
+          setSelected={(val) => setSelected(val)}
+          data={data}
+          save="value"
+        />
+      </View>
 
       <TextInput
         style={styles.textinput}
         placeholder="Password"
+        value={Pass}
         secureTextEntry={true}
         onChangeText={(value) => SetPass(value)}
       />
-      <TextInput
-        style={styles.textinput}
-        placeholder="Phone-Number"
-        keyboardType="numeric"
-        onChangeText={(value) => SetPhone(value)}
-      />
 
-      <TouchableOpacity style={styles.nextBtn} onPress={validation}>
-        <Text style={styles.nextStyle}>Next</Text>
+      <TouchableOpacity
+        style={styles.nextBtn}
+        onPress={() =>
+          //register(Name, FName, LName, selected, Pass);
+          navigation.navigate("home")
+        }
+      >
+        <Text style={styles.nextStyle}>Create Account</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
@@ -88,6 +122,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     //justifyContent: "center",
+  },
+  scroll: {
+    marginHorizontal: 20,
   },
   text1: {
     top: width / 3,
@@ -137,6 +174,13 @@ const styles = StyleSheet.create({
     color: "red",
     textAlign: "center",
     top: width / 2,
+    fontSize: 15,
+  },
+  dropdown: {
+    padding: 4,
+    margin: 8,
+    width: 310,
+    top: width / 1.9,
     fontSize: 15,
   },
 });

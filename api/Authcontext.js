@@ -9,6 +9,28 @@ export const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({});
   const [isLoading, setISLoading] = useState(false);
 
+  const register = (Username, Firstname, Lastname, Accounttype, Password) => {
+    axios
+      .post(`${API_URl}/signUp/`, {
+        Username,
+        Firstname,
+        Lastname,
+        Accounttype,
+        Password,
+      })
+      .then((res) => {
+        let userInfo = res.data;
+        // setUserInfo(userInfo);
+        // AsyncStorage.setItem("userInfo", JSON.stringify(userInfo));
+        // setISLoading(false);
+        console.log(userInfo);
+      })
+      .catch((e) => {
+        console.log(e);
+        setISLoading(false);
+      });
+  };
+
   const login = (username, password, grant_type = "password") => {
     setISLoading(true);
 
@@ -33,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <Authcontext.Provider value={{ isLoading, userInfo, login }}>
+    <Authcontext.Provider value={{ register, isLoading, userInfo, login }}>
       {children}
     </Authcontext.Provider>
   );

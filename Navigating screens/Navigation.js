@@ -1,13 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ShopCreate_Ac from "../src/Register/User/ShopCreate_Ac";
-import ShopCreate_Ac2 from "../src/Register/User/ShopCreate_Ac2";
+
 import Signin from "../src/Login/Signin";
 import Prelog from "../src/Prelog";
 import Login from "../src/Login/Login";
 import React, { useContext } from "react";
 import { Authcontext } from "../api/Authcontext";
 import Home from "../src/Postlogin/Home";
+import Jobpost from "../src/Postlogin/Jobpost";
 
 export default function Navigation() {
   const Stack = createNativeStackNavigator();
@@ -38,11 +39,7 @@ export default function Navigation() {
               component={ShopCreate_Ac}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name="2"
-              component={ShopCreate_Ac2}
-              options={{ headerShown: false }}
-            />
+
             <Stack.Screen
               name="login"
               component={Login}
@@ -50,6 +47,16 @@ export default function Navigation() {
             />
           </>
         )}
+        <Stack.Screen
+          name="home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Job Details"
+          component={Jobpost}
+          options={{ headerShown: true }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

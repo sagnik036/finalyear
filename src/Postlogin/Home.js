@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 import React from "react";
-import { Button } from "react-native-paper";
+import { Button, IconButton } from "react-native-paper";
 const { height, width } = Dimensions.get("window");
 
 export default function Home({ navigation }) {

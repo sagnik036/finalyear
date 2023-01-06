@@ -9,6 +9,7 @@ import React, { useContext } from "react";
 import { Authcontext } from "../api/Authcontext";
 import Home from "../src/Postlogin/Home";
 import Jobpost from "../src/Postlogin/Jobpost";
+import Sidebar from "../src/Sidebar/Sidebar";
 
 export default function Navigation() {
   const Stack = createNativeStackNavigator();
@@ -56,6 +57,11 @@ export default function Navigation() {
           name="Job Details"
           component={Jobpost}
           options={{ headerShown: true }}
+        />
+        <Stack.Screen
+          name="sidebar"
+          component={Sidebar}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
